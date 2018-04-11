@@ -6,6 +6,7 @@ Como usar:
 var listHolidaysBrazil = Utils.GetHolidaysByCurrentYear().ToList();
 
 var dataTest = DateTime.Now; //Data que você deseja verificar se é feriado.
+
 if(listHolidaysBrazil.Contains(dataTest))
 {
 //Entrou aqui, é feriado.
