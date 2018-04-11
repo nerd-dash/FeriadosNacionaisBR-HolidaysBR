@@ -1,4 +1,4 @@
-# Feriados-Nacionais---BR-Holidays---BR
+# Feriados Nacionais BR Holidays-BR
 Lista com os feriados nacionais incluindo feriados correntes como Páscoa, Sexta-Feira Santa, Carnaval e Corpus Christi.
 
 Como usar:
