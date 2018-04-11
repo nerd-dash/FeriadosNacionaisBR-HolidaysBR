@@ -7,72 +7,11 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using static LookUp.GoogleMaps;
 
-namespace LookUp.Business
+namespace Util.Business
 {
     public static class Utils
     {
-
-        public static string GetAddress(double lat, double lng)
-        {
-            try
-            {
-                //Pass request to google api with orgin and destination details
-                HttpWebRequest request =
-                    (HttpWebRequest)WebRequest.Create("https://maps.googleapis.com/maps/api/geocode/xml?latlng="
-                    + lat.ToString().Replace(",", ".") + "," + lng.ToString().Replace(",", ".") + "&language=pt-br");
-
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                using (var streamReader = new StreamReader(response.GetResponseStream()))
-                {
-                    var result = streamReader.ReadToEnd();
-
-                    if (!string.IsNullOrEmpty(result))
-                    {
-                        string xml = result;
-                        XmlDocument doc = new XmlDocument();
-                        doc.LoadXml(xml);
-                        //var node = doc.SelectNodes("GeocodeResponse/result/formatted_address");
-                        //var v = node[0].InnerText;
-                        var v = doc.ChildNodes[1].ChildNodes[1].ChildNodes[1].InnerText;
-                        return v;
-                    }
-                }
-
-                return "";
-            }
-            catch (Exception ex)
-            {
-                return "";
-            }
-        }
-
-        public static async Task<decimal> GetKMCalculated(double initialLat, double initialLng, double finalLat, double finalLng)
-        {
-
-            if (initialLat == 0 || initialLng == 0 || finalLat == 0 || finalLng == 0)
-                return 0;
-
-            try
-            {
-                DistanceResult t = await GoogleMaps.GetDistanceAsync(initialLat.ToString().Replace(",", ".") + "," + initialLng.ToString().Replace(",", "."), finalLat.ToString().Replace(",", ".") + "," + finalLng.ToString().Replace(",", "."));
-
-                var distance = t.rows.Select(x => x.elements).FirstOrDefault().Select(x => x.distance).Select(x => x.value).FirstOrDefault();
-
-                return distance > 0 ? distance / 1000 : 0;
-            }
-            catch (Exception ex)
-            {
-                return 0;
-            }
-        }
-
-        public static bool StringIsNumber(string number)
-        {
-            return int.TryParse(number, out int n);
-        }
-
         public static IList<DateTime> GetHolidaysByCurrentYear(int? yearParameter = null)
         {
             var holidayList = new List<DateTime>();
