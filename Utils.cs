@@ -23,7 +23,7 @@ namespace Util.Business
             holidayList.Add(new DateTime(year, 1, 1)); //Ano novo 
             holidayList.Add(new DateTime(year, 4, 21));  //Tiradentes
             holidayList.Add(new DateTime(year, 5, 1)); //Dia do trabalho
-            holidayList.Add(new DateTime(year, 7, 9)); //Dia da Independência do Brasil
+            holidayList.Add(new DateTime(year, 9, 7)); //Dia da Independência do Brasil
             holidayList.Add(new DateTime(year, 10, 12));  //Nossa Senhora Aparecida
             holidayList.Add(new DateTime(year, 11, 2)); //Finados
             holidayList.Add(new DateTime(year, 11, 15)); //Proclamação da República
